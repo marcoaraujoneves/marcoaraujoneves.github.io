@@ -12,6 +12,9 @@ import cvUrl from '../assets/documents/Marco_Araujo_-_Fullstack_Software_Enginee
 import heroImage from '../assets/images/tech-cloud.png'
 import styles from '../styles/home.module.css'
 
+// Flip to true to bring the cover letter button back.
+const showCoverLetter = false
+
 const latestPosts = (await getPosts()).slice(0, 4)
 ---
 
@@ -56,13 +59,15 @@ const latestPosts = (await getPosts()).slice(0, 4)
           >
             Download CV
           </a>
-          <a
-            href={coverLetterUrl}
-            class={styles.secondaryButton}
-            download="Marco_Araujo_-_Fullstack_Software_Engineer-Cover-Letter.pdf"
-          >
-            Download Cover Letter
-          </a>
+          {showCoverLetter && (
+            <a
+              href={coverLetterUrl}
+              class={styles.secondaryButton}
+              download="Marco_Araujo_-_Fullstack_Software_Engineer-Cover-Letter.pdf"
+            >
+              Download Cover Letter
+            </a>
+          )}
         </div>
       </div>
 

@@ -7,24 +7,37 @@ import remix from '../assets/tech/remix.svg?raw'
 import shopify from '../assets/tech/shopify.svg?raw'
 import firebase from '../assets/tech/firebase.svg?raw'
 import postgresql from '../assets/tech/postgresql.svg?raw'
+import nuxt from '../assets/tech/nuxtdotjs.svg?raw'
+import graphql from '../assets/tech/graphql.svg?raw'
+import lighthouse from '../assets/tech/lighthouse.svg?raw'
+import claude from '../assets/tech/claude.svg?raw'
 
 import styles from '../styles/home.module.css'
 
 // Each file is a Simple Icons SVG whose <title> doubles as the tooltip.
+// `mobileOnly` icons fill the strip on small screens, where the tech cloud
+// image is hidden.
 const icons = [
-  typescript,
-  react,
-  vue,
-  node,
-  remix,
-  shopify,
-  firebase,
-  postgresql,
+  { svg: typescript },
+  { svg: react },
+  { svg: vue },
+  { svg: node },
+  { svg: remix },
+  { svg: shopify },
+  { svg: firebase },
+  { svg: postgresql },
+  { svg: nuxt, mobileOnly: true },
+  { svg: graphql, mobileOnly: true },
+  { svg: lighthouse, mobileOnly: true },
+  { svg: claude, mobileOnly: true },
 ]
 ---
 
 <ul class={styles.techStack} aria-label="Technologies I work with">
-  {icons.map(svg => (
-    <li class={styles.techIcon} set:html={svg} />
+  {icons.map(({ svg, mobileOnly }) => (
+    <li
+      class:list={[styles.techIcon, { [styles.mobileOnly]: mobileOnly }]}
+      set:html={svg}
+    />
   ))}
 </ul>
