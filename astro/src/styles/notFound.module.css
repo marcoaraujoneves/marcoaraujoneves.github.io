@@ -1,0 +1,15 @@
+.error-number {
+  font-size: 72px;
+  margin-bottom: 8px;
+}
+
+.error-message {
+  font-size: 36px;
+  margin-bottom: 48px;
+}
+
+.error-number,
+.error-message,
+.back-message {
+  text-align: center;
+}

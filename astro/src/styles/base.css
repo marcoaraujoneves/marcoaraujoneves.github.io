@@ -1,0 +1,215 @@
+:root {
+  --primary-color: #4282b8;
+  --primary-color-darker: #3350a0;
+  --secondary-color: #35475e;
+
+  color-scheme: light;
+  --background-color: #fff;
+  --background-color-soft: #f9f9f9;
+  --navlink-text-color: #35475e;
+  --heading-link-color: #35475e;
+  --heading-text-color: #000;
+  --body-text-color: #585757;
+  --badge-text-color: #505050;
+  --badge-border-color: #e9e9e9;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --background-color: #181a1b;
+  --background-color-soft: #1b1e1f;
+  --navlink-text-color: #a6bbcd;
+  --heading-link-color: #e8e6e3;
+  --heading-text-color: #e8e6e3;
+  --body-text-color: #b1aaa0;
+  --badge-text-color: #b5afa6;
+  --badge-border-color: #363b3d;
+}
+
+/* Theme toggle shows the icon for the current mode. */
+:root[data-theme='dark'] .icon-light,
+:root:not([data-theme='dark']) .icon-dark {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+*::selection {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+html,
+body {
+  height: 100vh;
+  font-family:
+    'Source Sans 3', 'Source Sans Pro', Verdana, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+main {
+  width: 95%;
+  max-width: 1110px;
+  min-height: calc(100vh - 98px - 488px);
+  margin: 0 auto;
+  padding: 24px 0 64px;
+}
+
+main h1 {
+  margin: 28px 0 20px;
+}
+
+main h1 {
+  font-size: 42px;
+}
+
+main h1 span {
+  text-transform: capitalize;
+}
+
+main h2 {
+  font-size: 34px;
+}
+
+main h3 {
+  font-size: 29px;
+}
+
+main h4 {
+  font-size: 26px;
+}
+
+main h5 {
+  font-size: 23px;
+}
+
+main h6 {
+  font-size: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-text-color);
+}
+
+main p,
+main li {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.8;
+  font-family:
+    open sans,
+    sans-serif;
+  text-align: justify;
+  color: var(--body-text-color);
+}
+
+main p,
+main ul,
+main ol {
+  margin-bottom: 16px;
+}
+
+a,
+a.active-link {
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+a:hover,
+a.active-link:hover {
+  color: var(--primary-color-darker);
+}
+
+a.active-link {
+  font-weight: 600;
+}
+
+/* Heading anchor links (rehype-autolink-headings), visible on hover. */
+.anchor.before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  padding-right: 8px;
+}
+
+.anchor.before svg {
+  visibility: hidden;
+}
+
+:is(h2, h3, h4, h5, h6):hover .anchor.before svg,
+.anchor.before:focus svg {
+  visibility: visible;
+}
+
+.anchor.before path {
+  fill: var(--body-text-color);
+}
+
+/* Code blocks highlighted by Shiki at build time. */
+.astro-code {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: var(--background-color-soft) !important;
+}
+
+:root[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark) !important;
+}
+
+.astro-code code {
+  counter-reset: line;
+}
+
+.astro-code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2em;
+  margin-right: 16px;
+  text-align: right;
+  color: var(--body-text-color);
+  opacity: 0.5;
+}
+
+:not(pre) > code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  background-color: var(--background-color-soft);
+  border: 1px solid var(--badge-border-color);
+}

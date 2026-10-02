@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from 'astro'
+
+import PostsGrid from '../../components/PostsGrid.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getPosts, slugify, unique } from '../../lib/posts'
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts()
+  const tags = unique(posts.flatMap(post => post.data.tags))
+
+  return tags.map(tag => ({
+    params: { tag: slugify(tag) },
+    props: { tag, posts: posts.filter(post => post.data.tags.includes(tag)) },
+  }))
+}) satisfies GetStaticPaths
+
+const { tag, posts } = Astro.props
+---
+
+<BaseLayout title={`Blog posts about ${tag}`}>
+  <h1>
+    All posts about&nbsp;
+    <span>{tag}</span>
+  </h1>
+
+  <PostsGrid posts={posts} />
+</BaseLayout>

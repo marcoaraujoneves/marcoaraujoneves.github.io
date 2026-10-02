@@ -1,0 +1,104 @@
+---
+import Icon from './Icon.astro'
+
+import styles from '../styles/navbar.module.css'
+
+const links = [
+  { href: '/', label: 'HOME' },
+  { href: '/about/', label: 'ABOUT' },
+  { href: '/posts/', label: 'POSTS' },
+  { href: '/contact/', label: 'CONTACT' },
+]
+
+const currentPath = Astro.url.pathname.replace(/\/?$/, '/')
+---
+
+<header class={styles.header} data-header>
+  <nav id="main-nav">
+    <ul>
+      {links.map(({ href, label }) => {
+        const isActive = currentPath === href
+
+        return (
+          <li>
+            <a
+              href={href}
+              class:list={['nav-link', { 'active-link': isActive }]}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </nav>
+
+  <button
+    class={styles.toggleThemeButton}
+    type="button"
+    aria-label="Toggle dark mode"
+    data-theme-toggle
+  >
+    <Icon name="sun" size={18} color="#35475e" class="icon-light" />
+    <Icon name="moon" size={18} color="#a6bbcd" class="icon-dark" />
+  </button>
+
+  <form
+    class={styles.searchWrapper}
+    action="/posts/"
+    method="get"
+    role="search"
+  >
+    <input
+      type="search"
+      name="search"
+      placeholder="Search"
+      aria-label="Search posts"
+    />
+
+    <button type="submit" aria-label="Search">
+      <Icon name="search" size={14} color="#ffffff" />
+    </button>
+  </form>
+
+  <button
+    class={styles.menuToggle}
+    type="button"
+    aria-label="Toggle menu"
+    aria-controls="main-nav"
+    aria-expanded="false"
+    data-menu-toggle
+  >
+    <div></div>
+    <div></div>
+    <div></div>
+  </button>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!
+  const menuToggle =
+    header.querySelector<HTMLButtonElement>('[data-menu-toggle]')!
+  const themeToggle = header.querySelector<HTMLButtonElement>(
+    '[data-theme-toggle]'
+  )!
+  const searchInput = header.querySelector<HTMLInputElement>(
+    'input[name="search"]'
+  )!
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = header.toggleAttribute('data-open')
+    menuToggle.setAttribute('aria-expanded', String(isOpen))
+  })
+
+  themeToggle.addEventListener('click', () => {
+    const root = document.documentElement
+    const colorMode = root.dataset.theme === 'dark' ? 'light' : 'dark'
+
+    root.dataset.theme = colorMode
+    localStorage.setItem('color-mode', colorMode)
+  })
+
+  searchInput.value = new URLSearchParams(location.search).get('search') ?? ''
+</script>

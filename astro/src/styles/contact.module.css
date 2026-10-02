@@ -1,0 +1,30 @@
+.contact-wapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.contact-wapper div:first-child {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 2px;
+}
+
+.contact-wapper p a {
+  margin-right: 10px;
+}
+
+@media (max-width: 665px) {
+  .contact-wapper {
+    flex-direction: column;
+  }
+
+  .contact-wapper div:first-child {
+    max-width: 665px;
+  }
+
+  .contact-wapper p:last-child {
+    text-align: center;
+  }
+}

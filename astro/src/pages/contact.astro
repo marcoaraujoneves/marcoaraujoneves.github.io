@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets'
+
+import Icon from '../components/Icon.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { SOCIAL_LINKS } from '../consts'
+
+import contactImage from '../assets/images/contact.jpg'
+import styles from '../styles/contact.module.css'
+---
+
+<BaseLayout title="Contact me" image={contactImage}>
+  <h1>Contact me</h1>
+
+  <div class={styles.contactWapper}>
+    <div>
+      <Image src={contactImage} alt="Contact me page image." priority />
+    </div>
+
+    <div>
+      <p>
+        Don't hesitate to contact me using the links below for any queries,
+        suggestions or feedback you may have. I am always open to new learning
+        opportunities and I look forward to hearing from you.
+      </p>
+
+      <p>
+        <a
+          href={SOCIAL_LINKS.github}
+          title="Github profile"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="github" color="#35495e" size={24} />
+        </a>
+        <a
+          href={SOCIAL_LINKS.linkedin}
+          title="LinkedIn profile"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="linkedin" color="#35495e" size={24} />
+        </a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

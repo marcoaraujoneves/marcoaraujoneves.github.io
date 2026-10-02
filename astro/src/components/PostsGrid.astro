@@ -1,0 +1,23 @@
+---
+import PostCard from './PostCard.astro'
+import type { Post } from '../lib/posts'
+
+import styles from '../styles/posts.module.css'
+
+interface Props {
+  posts: Post[]
+  highlightFirst?: boolean
+}
+
+const { posts, highlightFirst = false } = Astro.props
+---
+
+<div class={styles.postsWrapper} data-posts-grid>
+  {posts.map((post, index) => (
+    <PostCard post={post} highlighted={highlightFirst && index === 0} />
+  ))}
+
+  <h2 class={styles.noMatches} hidden={posts.length > 0} data-no-matches>
+    No matches found
+  </h2>
+</div>

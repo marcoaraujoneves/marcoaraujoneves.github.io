@@ -1,0 +1,62 @@
+---
+import Icon from './Icon.astro'
+import { SOCIAL_LINKS } from '../consts'
+import { getPosts, termPath, unique } from '../lib/posts'
+
+import styles from '../styles/footer.module.css'
+
+const posts = await getPosts()
+const categories = unique(posts.map(post => post.data.category))
+const tags = unique(posts.flatMap(post => post.data.tags))
+---
+
+<footer class={styles.footer}>
+  <div class={styles.columnsWrapper}>
+    <div class={styles.column}>
+      <h3>Categories</h3>
+
+      {categories.map(category => (
+        <a href={termPath('category', category)}>
+          <span class={styles.badge}>{category}</span>
+        </a>
+      ))}
+    </div>
+    <div class={styles.column}>
+      <h3>Tags</h3>
+
+      {tags.map(tag => (
+        <a href={termPath('tag', tag)}>
+          <span class={styles.badge}>{tag}</span>
+        </a>
+      ))}
+    </div>
+    <div class={styles.column}>
+      <h3>Social Media</h3>
+
+      <a
+        href={SOCIAL_LINKS.github}
+        title="Github profile"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={styles.socialLink}
+      >
+        <Icon name="github" color="#171515" size={16} />
+        Github
+      </a>
+      <a
+        href={SOCIAL_LINKS.linkedin}
+        title="LinkedIn profile"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={styles.socialLink}
+      >
+        <Icon name="linkedin" color="#0072b1" size={16} />
+        LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <div class={styles.copyrights}>
+    Copyright &copy; {new Date().getFullYear()} Marco Araujo
+  </div>
+</footer>

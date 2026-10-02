@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets'
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+import aboutImage from '../assets/images/about.png'
+import styles from '../styles/about.module.css'
+---
+
+<BaseLayout title="About me" image={aboutImage}>
+  <h1>About me</h1>
+
+  <Image
+    src={aboutImage}
+    class={styles.cover}
+    alt="About me page cover."
+    priority
+  />
+
+  <h3 class={styles.subtitle}>
+    Hello, I'm&nbsp;
+    <strong>Marco Araujo</strong>
+  </h3>
+
+  <div>
+    <p>
+      I'm a computer engineer from Brazil. With over 4 years of experience
+      working as a software developer, I have worked on lots of projects and my
+      main areas of expertise include Javascript, Node.js, Firebase, React, and
+      Vue. Additionally, I have worked on projects using C/C++ and Python.
+    </p>
+
+    <p>
+      I am passionate about technology and the tech market in general. I like to
+      spend some time with small robotics and electronics projects in my free
+      time, mostly using Arduino. I'm very interested in Machine Learning and AI
+      as well.
+    </p>
+
+    <p>
+      Through this blog, I hope to share some experiences, knowledge, and
+      insights with the community, so I invite you to join me on this journey!
+    </p>
+  </div>
+</BaseLayout>

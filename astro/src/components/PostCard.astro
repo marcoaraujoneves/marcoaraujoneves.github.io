@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets'
+
+import { formatDate, getLocalImage, postPath, type Post } from '../lib/posts'
+
+import styles from '../styles/posts.module.css'
+
+interface Props {
+  post: Post
+  highlighted?: boolean
+}
+
+const { post, highlighted = false } = Astro.props
+const { title, description, category, cover, date } = post.data
+---
+
+<div
+  class={styles.postCard}
+  data-highlighted={highlighted || undefined}
+  data-search={`${title} ${description}`.toLowerCase()}
+>
+  <div class={styles.imageContainer}>
+    <Image
+      src={getLocalImage(cover)}
+      width={1600}
+      height={800}
+      sizes="(min-width: 1110px) 500px, (min-width: 600px) 50vw, 95vw"
+      alt={`${title} blog post cover.`}
+    />
+  </div>
+
+  <div class={styles.postBody}>
+    <p class={styles.postDate}>
+      <span>{category}</span>
+      &nbsp;&bull;&nbsp;
+      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+    </p>
+
+    <a href={postPath(post)}>
+      <h3>{title}</h3>
+    </a>
+
+    <p>{description}</p>
+  </div>
+</div>

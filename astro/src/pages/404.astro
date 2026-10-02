@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+import styles from '../styles/notFound.module.css'
+---
+
+<BaseLayout title="Page not found">
+  <h1 class={styles.errorNumber}>404</h1>
+  <h3 class={styles.errorMessage}>Page not found!</h3>
+
+  <p class={styles.backMessage}>
+    We couldn't find a good match for your search.
+    <br />
+    <a href="/">Back to homepage</a>
+  </p>
+</BaseLayout>
