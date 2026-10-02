@@ -1,45 +1,61 @@
 ---
 import { Image } from 'astro:assets'
 
-import { formatDate, getLocalImage, postPath, type Post } from '../lib/posts'
+import {
+  formatDate,
+  getLocalImage,
+  postPath,
+  readingTime,
+  type Post,
+} from '../lib/posts'
 
 import styles from '../styles/posts.module.css'
 
 interface Props {
   post: Post
-  highlighted?: boolean
+  featured?: boolean
 }
 
-const { post, highlighted = false } = Astro.props
+const { post, featured = false } = Astro.props
 const { title, description, category, cover, date } = post.data
 ---
 
-<div
+<article
   class={styles.postCard}
-  data-highlighted={highlighted || undefined}
-  data-search={`${title} ${description}`.toLowerCase()}
+  data-featured={featured || undefined}
+  data-category={category}
+  data-search={`${title} ${description} ${category} ${post.data.tags.join(' ')}`.toLowerCase()}
 >
   <div class={styles.imageContainer}>
     <Image
       src={getLocalImage(cover)}
       width={1600}
-      height={800}
-      sizes="(min-width: 1110px) 500px, (min-width: 600px) 50vw, 95vw"
-      alt={`${title} blog post cover.`}
+      height={900}
+      sizes={
+        featured
+          ? '(min-width: 860px) 600px, 95vw'
+          : '(min-width: 1110px) 360px, (min-width: 600px) 50vw, 95vw'
+      }
+      alt=""
     />
+    {featured && <span class={styles.featuredBadge}>Latest</span>}
   </div>
 
   <div class={styles.postBody}>
-    <p class={styles.postDate}>
-      <span>{category}</span>
-      &nbsp;&bull;&nbsp;
-      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+    <p class={styles.meta}>
+      <span class={styles.category}>{category}</span>
+      <time datetime={date.toISOString()}>{formatDate(date, 'short')}</time>
+      <span>{readingTime(post)} min read</span>
     </p>
 
-    <a href={postPath(post)}>
-      <h3>{title}</h3>
-    </a>
+    <h3>
+      <a href={postPath(post)}>{title}</a>
+    </h3>
 
-    <p>{description}</p>
+    <p class={styles.excerpt}>{description}</p>
+
+    <span class={styles.readMore} aria-hidden="true">
+      Read post →
+    </span>
   </div>
-</div>
+</article>

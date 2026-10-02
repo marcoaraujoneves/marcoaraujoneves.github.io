@@ -30,21 +30,30 @@ export function slugify(value: string): string {
 }
 
 export function postPath(post: Post): string {
-  return `/${post.id}/`
+  return `/blog/${post.id}/`
 }
 
 export function termPath(type: 'category' | 'tag', value: string): string {
-  return `/${type}/${slugify(value)}/`
+  return `/blog/${type}/${slugify(value)}/`
 }
 
 export function unique(values: string[]): string[] {
   return [...new Set(values)]
 }
 
-export function formatDate(date: Date): string {
+export function readingTime(post: Post): number {
+  const words = (post.body ?? '').split(/\s+/).filter(Boolean).length
+
+  return Math.max(1, Math.round(words / 220))
+}
+
+export function formatDate(
+  date: Date,
+  month: 'long' | 'short' = 'long'
+): string {
   return date.toLocaleDateString('en-US', {
-    month: 'long',
-    day: '2-digit',
+    month,
+    day: month === 'long' ? '2-digit' : 'numeric',
     year: 'numeric',
     timeZone: 'UTC',
   })

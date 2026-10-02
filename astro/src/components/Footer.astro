@@ -1,62 +1,116 @@
 ---
+import { Image } from 'astro:assets'
+
 import Icon from './Icon.astro'
 import { SOCIAL_LINKS } from '../consts'
 import { getPosts, termPath, unique } from '../lib/posts'
 
+import logoDark from '../assets/images/logo-dark.jpg'
+import logoLight from '../assets/images/logo-light.png'
 import styles from '../styles/footer.module.css'
 
 const posts = await getPosts()
 const categories = unique(posts.map(post => post.data.category))
-const tags = unique(posts.flatMap(post => post.data.tags))
+// A tag that duplicates a category is left out so each topic shows once.
+const tags = unique(posts.flatMap(post => post.data.tags)).filter(
+  tag => !categories.includes(tag)
+)
+
+const pages = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/contact/', label: 'Contact' },
+]
+
+const socials = [
+  { name: 'GitHub', icon: 'github', href: SOCIAL_LINKS.github },
+  { name: 'LinkedIn', icon: 'linkedin', href: SOCIAL_LINKS.linkedin },
+] as const
 ---
 
 <footer class={styles.footer}>
-  <div class={styles.columnsWrapper}>
-    <div class={styles.column}>
-      <h3>Categories</h3>
-
-      {categories.map(category => (
-        <a href={termPath('category', category)}>
-          <span class={styles.badge}>{category}</span>
-        </a>
-      ))}
-    </div>
-    <div class={styles.column}>
-      <h3>Tags</h3>
-
-      {tags.map(tag => (
-        <a href={termPath('tag', tag)}>
-          <span class={styles.badge}>{tag}</span>
-        </a>
-      ))}
-    </div>
-    <div class={styles.column}>
-      <h3>Social Media</h3>
-
-      <a
-        href={SOCIAL_LINKS.github}
-        title="Github profile"
-        target="_blank"
-        rel="noopener noreferrer"
-        class={styles.socialLink}
-      >
-        <Icon name="github" color="#171515" size={16} />
-        Github
+  <div class={styles.inner}>
+    <div class={styles.brand}>
+      <a href="/" class={styles.logo} aria-label="Marco Araujo, home">
+        <Image
+          src={logoLight}
+          alt=""
+          width={40}
+          height={40}
+          layout="fixed"
+          class:list={[styles.logoImage, 'icon-light']}
+        />
+        <Image
+          src={logoDark}
+          alt=""
+          width={40}
+          height={40}
+          layout="fixed"
+          class:list={[styles.logoImage, 'icon-dark']}
+        />
+        <span>
+          <strong>Marco Araujo</strong>
+          <small>Full Stack Engineer</small>
+        </span>
       </a>
-      <a
-        href={SOCIAL_LINKS.linkedin}
-        title="LinkedIn profile"
-        target="_blank"
-        rel="noopener noreferrer"
-        class={styles.socialLink}
-      >
-        <Icon name="linkedin" color="#0072b1" size={16} />
-        LinkedIn
-      </a>
+
+      <ul class={styles.socials}>
+        {socials.map(({ name, icon, href }) => (
+          <li>
+            <a
+              href={href}
+              title={name}
+              aria-label={`${name} profile`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name={icon} size={18} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <nav class={styles.column} aria-label="Footer">
+      <h3>Explore</h3>
+      <ul>
+        {pages.map(({ href, label }) => (
+          <li>
+            <a href={href}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class={styles.column}>
+      <h3>Topics</h3>
+      <ul class={styles.badges}>
+        {categories.map(category => (
+          <li>
+            <a href={termPath('category', category)} class={styles.badge}>
+              {category}
+            </a>
+          </li>
+        ))}
+        {tags.map(tag => (
+          <li>
+            <a href={termPath('tag', tag)} class={styles.badge}>
+              {tag}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 
-  <div class={styles.copyrights}>
-    Copyright &copy; {new Date().getFullYear()} Marco Araujo
+  <div class={styles.bottom}>
+    <p>&copy; {new Date().getFullYear()} Marco Araujo. All rights reserved.</p>
+    <p>
+      Built with{' '}
+      <a href="https://astro.build" rel="noopener noreferrer">
+        Astro
+      </a>
+    </p>
   </div>
 </footer>

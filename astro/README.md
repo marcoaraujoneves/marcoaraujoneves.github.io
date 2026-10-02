@@ -18,7 +18,7 @@ Requires Node 22.12+ (see `.nvmrc`).
 
 ## Writing a post
 
-Add a Markdown file to `posts/`. Its file name becomes the URL (`posts/my-post.md` → `/my-post/`).
+Add a Markdown file to `posts/`. Its file name becomes the URL (`posts/my-post.md` → `/blog/my-post/`).
 
 ```md
 ---

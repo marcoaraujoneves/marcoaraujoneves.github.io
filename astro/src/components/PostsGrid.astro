@@ -14,7 +14,7 @@ const { posts, highlightFirst = false } = Astro.props
 
 <div class={styles.postsWrapper} data-posts-grid>
   {posts.map((post, index) => (
-    <PostCard post={post} highlighted={highlightFirst && index === 0} />
+    <PostCard post={post} featured={highlightFirst && index === 0} />
   ))}
 
   <h2 class={styles.noMatches} hidden={posts.length > 0} data-no-matches>

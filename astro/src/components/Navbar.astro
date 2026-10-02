@@ -1,79 +1,102 @@
 ---
+import { Image } from 'astro:assets'
+
 import Icon from './Icon.astro'
+import logoLight from '../assets/images/logo-light.png'
+import logoDark from '../assets/images/logo-dark.jpg'
 
 import styles from '../styles/navbar.module.css'
 
 const links = [
-  { href: '/', label: 'HOME' },
-  { href: '/about/', label: 'ABOUT' },
-  { href: '/posts/', label: 'POSTS' },
-  { href: '/contact/', label: 'CONTACT' },
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/contact/', label: 'Contact' },
 ]
 
 const currentPath = Astro.url.pathname.replace(/\/?$/, '/')
 ---
 
 <header class={styles.header} data-header>
-  <nav id="main-nav">
-    <ul>
-      {links.map(({ href, label }) => {
-        const isActive = currentPath === href
+  <div class={styles.bar}>
+    <a href="/" class={styles.logo} aria-label="Marco Araujo, home">
+      <Image
+        src={logoLight}
+        alt=""
+        width={36}
+        height={36}
+        layout="fixed"
+        class:list={[styles.logoMark, 'icon-light']}
+      />
+      <Image
+        src={logoDark}
+        alt=""
+        width={36}
+        height={36}
+        layout="fixed"
+        class:list={[styles.logoMark, 'icon-dark']}
+      />
+      <span class={styles.logoText}>
+        marco<span>araujo</span>
+      </span>
+    </a>
 
-        return (
-          <li>
-            <a
-              href={href}
-              class:list={['nav-link', { 'active-link': isActive }]}
-              aria-current={isActive ? 'page' : undefined}
-            >
-              {label}
-            </a>
-          </li>
-        )
-      })}
-    </ul>
-  </nav>
+    <nav id="main-nav" class={styles.nav} aria-label="Main">
+      <ul>
+        {links.map(({ href, label }) => {
+          // Sections stay highlighted on their child pages (e.g. a blog post).
+          const isActive =
+            href === '/' ? currentPath === href : currentPath.startsWith(href)
 
-  <button
-    class={styles.toggleThemeButton}
-    type="button"
-    aria-label="Toggle dark mode"
-    data-theme-toggle
-  >
-    <Icon name="sun" size={18} color="#35475e" class="icon-light" />
-    <Icon name="moon" size={18} color="#a6bbcd" class="icon-dark" />
-  </button>
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[styles.link, { [styles.active]: isActive }]}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {label}
+              </a>
+            </li>
+          )
+        })}
+        <li class={styles.mobileCta}>
+          <a href="/contact/" class={styles.cta}>
+            Let's talk
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-  <form
-    class={styles.searchWrapper}
-    action="/posts/"
-    method="get"
-    role="search"
-  >
-    <input
-      type="search"
-      name="search"
-      placeholder="Search"
-      aria-label="Search posts"
-    />
+    <div class={styles.actions}>
+      <button
+        class={styles.themeToggle}
+        type="button"
+        aria-label="Toggle dark mode"
+        data-theme-toggle
+      >
+        <Icon name="sun" size={18} class="icon-light" />
+        <Icon name="moon" size={18} class="icon-dark" />
+      </button>
 
-    <button type="submit" aria-label="Search">
-      <Icon name="search" size={14} color="#ffffff" />
-    </button>
-  </form>
+      <a href="/contact/" class:list={[styles.cta, styles.desktopCta]}>
+        Let's talk
+      </a>
 
-  <button
-    class={styles.menuToggle}
-    type="button"
-    aria-label="Toggle menu"
-    aria-controls="main-nav"
-    aria-expanded="false"
-    data-menu-toggle
-  >
-    <div></div>
-    <div></div>
-    <div></div>
-  </button>
+      <button
+        class={styles.menuToggle}
+        type="button"
+        aria-label="Toggle menu"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
 </header>
 
 <script>
@@ -82,9 +105,6 @@ const currentPath = Astro.url.pathname.replace(/\/?$/, '/')
     header.querySelector<HTMLButtonElement>('[data-menu-toggle]')!
   const themeToggle = header.querySelector<HTMLButtonElement>(
     '[data-theme-toggle]'
-  )!
-  const searchInput = header.querySelector<HTMLInputElement>(
-    'input[name="search"]'
   )!
 
   menuToggle.addEventListener('click', () => {
@@ -99,6 +119,4 @@ const currentPath = Astro.url.pathname.replace(/\/?$/, '/')
     root.dataset.theme = colorMode
     localStorage.setItem('color-mode', colorMode)
   })
-
-  searchInput.value = new URLSearchParams(location.search).get('search') ?? ''
 </script>

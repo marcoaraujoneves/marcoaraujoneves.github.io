@@ -1,9 +1,9 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import PostsGrid from '../../components/PostsGrid.astro'
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import { getPosts, slugify, unique } from '../../lib/posts'
+import PostsGrid from '../../../components/PostsGrid.astro'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import { getPosts, slugify, unique } from '../../../lib/posts'
 
 export const getStaticPaths = (async () => {
   const posts = await getPosts()

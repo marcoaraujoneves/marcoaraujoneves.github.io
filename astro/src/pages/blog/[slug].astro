@@ -1,0 +1,168 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { render } from 'astro:content'
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import {
+  formatDate,
+  getLocalImage,
+  getPosts,
+  postPath,
+  readingTime,
+  termPath,
+  type Post,
+} from '../../lib/posts'
+
+import styles from '../../styles/post.module.css'
+
+export const getStaticPaths = (async () => {
+  // Oldest first, so "previous" is the older post and "next" the newer one.
+  const posts = (await getPosts()).reverse()
+
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: { post, previous: posts[index - 1], next: posts[index + 1] },
+  }))
+}) satisfies GetStaticPaths
+
+interface Props {
+  post: Post
+  previous?: Post
+  next?: Post
+}
+
+const { post, previous, next } = Astro.props
+const { title, description, category, tags, date, cover } = post.data
+const coverImage = getLocalImage(cover)
+const { Content, headings } = await render(post)
+const outline = headings.filter(heading => heading.depth === 2)
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={coverImage}
+  type="article"
+>
+  <div class={styles.progress} aria-hidden="true" data-progress></div>
+
+  <div class={styles.shell}>
+    <a href="/blog/" class={styles.back}>
+      ← Back to blog
+    </a>
+
+    <header class={styles.header}>
+      <p class={styles.meta}>
+        <a href={termPath('category', category)} class={styles.category}>
+          {category}
+        </a>
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span>{readingTime(post)} min read</span>
+      </p>
+
+      <h1>{title}</h1>
+
+      <p class={styles.lead}>{description}</p>
+
+      {tags.length > 0 && (
+        <ul class={styles.tags}>
+          {tags.map(tag => (
+            <li>
+              <a href={termPath('tag', tag)}>{tag}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    <Image
+      src={coverImage}
+      width={1600}
+      height={800}
+      sizes="(min-width: 1110px) 1024px, 95vw"
+      alt=""
+      class={styles.cover}
+      priority
+    />
+
+    <div
+      class:list={[styles.layout, { [styles.withOutline]: outline.length > 1 }]}
+    >
+      <article class={styles.content}>
+        <Content />
+      </article>
+
+      {outline.length > 1 && (
+        <aside class={styles.outline} aria-label="On this page">
+          <p>On this page</p>
+          <ul data-outline>
+            {outline.map(heading => (
+              <li>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
+    </div>
+
+    {(previous || next) && (
+      <nav class={styles.postNav} aria-label="More posts">
+        {previous ? (
+          <a href={postPath(previous)} rel="prev">
+            <span>← Previous</span>
+            <strong>{previous.data.title}</strong>
+          </a>
+        ) : (
+          <span />
+        )}
+        {next && (
+          <a href={postPath(next)} rel="next" class={styles.nextLink}>
+            <span>Next →</span>
+            <strong>{next.data.title}</strong>
+          </a>
+        )}
+      </nav>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  const progress = document.querySelector<HTMLElement>('[data-progress]')!
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-outline] a')
+
+  function updateProgress() {
+    const max = document.documentElement.scrollHeight - innerHeight
+    const ratio = max > 0 ? Math.min(1, scrollY / max) : 0
+
+    progress.style.transform = `scaleX(${ratio})`
+  }
+
+  addEventListener('scroll', updateProgress, { passive: true })
+  updateProgress()
+
+  // Highlights the outline entry of the section currently being read.
+  if (links.length > 0) {
+    const entries = [...links].map(link => ({
+      link,
+      heading: document.getElementById(link.hash.slice(1)),
+    }))
+
+    const observer = new IntersectionObserver(
+      observed => {
+        for (const { target, isIntersecting } of observed) {
+          if (!isIntersecting) continue
+
+          for (const { link, heading } of entries) {
+            if (heading === target) link.setAttribute('aria-current', 'true')
+            else link.removeAttribute('aria-current')
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -70% 0px' }
+    )
+
+    for (const { heading } of entries) if (heading) observer.observe(heading)
+  }
+</script>

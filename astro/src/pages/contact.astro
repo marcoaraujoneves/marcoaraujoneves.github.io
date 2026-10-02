@@ -1,47 +1,128 @@
 ---
-import { Image } from 'astro:assets'
-
 import Icon from '../components/Icon.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { SOCIAL_LINKS } from '../consts'
 
 import contactImage from '../assets/images/contact.jpg'
 import styles from '../styles/contact.module.css'
+
+const links = [
+  {
+    name: 'GitHub',
+    icon: 'github',
+    href: SOCIAL_LINKS.github,
+    label: SOCIAL_LINKS.github.replace('https://', ''),
+  },
+  {
+    name: 'LinkedIn',
+    icon: 'linkedin',
+    href: SOCIAL_LINKS.linkedin,
+    label: SOCIAL_LINKS.linkedin.replace('https://www.', '').replace(/\/$/, ''),
+  },
+] as const
 ---
 
 <BaseLayout title="Contact me" image={contactImage}>
-  <h1>Contact me</h1>
-
-  <div class={styles.contactWapper}>
-    <div>
-      <Image src={contactImage} alt="Contact me page image." priority />
-    </div>
-
-    <div>
-      <p>
-        Don't hesitate to contact me using the links below for any queries,
-        suggestions or feedback you may have. I am always open to new learning
-        opportunities and I look forward to hearing from you.
-      </p>
+  <section class={styles.contact}>
+    <div class={styles.intro}>
+      <h1>
+        Let's build <span>something great.</span>
+      </h1>
 
       <p>
-        <a
-          href={SOCIAL_LINKS.github}
-          title="Github profile"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="github" color="#35495e" size={24} />
-        </a>
-        <a
-          href={SOCIAL_LINKS.linkedin}
-          title="LinkedIn profile"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="linkedin" color="#35495e" size={24} />
-        </a>
+        Have a project, a role, or some feedback in mind? I'd love to hear about
+        your team and what you're building.
       </p>
+
+      <ul class={styles.links}>
+        {links.map(link => (
+          <li>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={styles.link}
+            >
+              <span class={styles.linkIcon}>
+                <Icon name={link.icon} size={22} />
+              </span>
+              <span class={styles.linkText}>
+                <strong>{link.name}</strong>
+                <small>{link.label}</small>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
-  </div>
+
+    <!-- Placeholder: the form is not wired up yet, so every control is disabled. -->
+    <form class={styles.form} aria-describedby="form-note">
+      <fieldset disabled>
+        <div class={styles.row}>
+          <label>
+            <span>
+              Name <abbr title="required">*</abbr>
+            </span>
+            <input
+              type="text"
+              name="name"
+              autocomplete="name"
+              placeholder="Your name"
+            />
+          </label>
+          <label>
+            <span>Company</span>
+            <input
+              type="text"
+              name="company"
+              autocomplete="organization"
+              placeholder="Where you work"
+            />
+          </label>
+        </div>
+
+        <div class={styles.row}>
+          <label>
+            <span>
+              Email <abbr title="required">*</abbr>
+            </span>
+            <input
+              type="email"
+              name="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+            />
+          </label>
+          <label>
+            <span>Website</span>
+            <input
+              type="url"
+              name="website"
+              autocomplete="url"
+              placeholder="https://"
+            />
+          </label>
+        </div>
+
+        <label>
+          <span>
+            Message <abbr title="required">*</abbr>
+          </span>
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Tell me about your team, project or idea…"
+          ></textarea>
+        </label>
+
+        <button type="submit">Send message</button>
+      </fieldset>
+
+      <p id="form-note" class={styles.note}>
+        The contact form is coming soon. Until then, reach out on GitHub or
+        LinkedIn.
+      </p>
+    </form>
+  </section>
 </BaseLayout>

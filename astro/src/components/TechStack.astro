@@ -1,0 +1,30 @@
+---
+import typescript from '../assets/tech/typescript.svg?raw'
+import react from '../assets/tech/react.svg?raw'
+import vue from '../assets/tech/vuedotjs.svg?raw'
+import node from '../assets/tech/nodedotjs.svg?raw'
+import remix from '../assets/tech/remix.svg?raw'
+import shopify from '../assets/tech/shopify.svg?raw'
+import firebase from '../assets/tech/firebase.svg?raw'
+import postgresql from '../assets/tech/postgresql.svg?raw'
+
+import styles from '../styles/home.module.css'
+
+// Each file is a Simple Icons SVG whose <title> doubles as the tooltip.
+const icons = [
+  typescript,
+  react,
+  vue,
+  node,
+  remix,
+  shopify,
+  firebase,
+  postgresql,
+]
+---
+
+<ul class={styles.techStack} aria-label="Technologies I work with">
+  {icons.map(svg => (
+    <li class={styles.techIcon} set:html={svg} />
+  ))}
+</ul>

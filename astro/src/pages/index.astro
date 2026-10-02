@@ -3,77 +3,94 @@ import { Image } from 'astro:assets'
 
 import Icon from '../components/Icon.astro'
 import PostsGrid from '../components/PostsGrid.astro'
+import TechStack from '../components/TechStack.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { SOCIAL_LINKS } from '../consts'
 import { getPosts } from '../lib/posts'
 
-import heroImage from '../assets/images/hero.png'
+import coverLetterUrl from '../assets/documents/Marco_Araujo_-_Fullstack_Software_Engineer-Cover-Letter.pdf?url'
+import cvUrl from '../assets/documents/Marco_Araujo_-_Fullstack_Software_Engineer-CV.pdf?url'
+import heroImage from '../assets/images/tech-cloud.png'
 import styles from '../styles/home.module.css'
 
-const latestPosts = (await getPosts()).slice(0, 3)
+const latestPosts = (await getPosts()).slice(0, 4)
 ---
 
 <BaseLayout>
   <div class={styles.heroWrapper}>
     <div class={styles.heroRow}>
       <div class={styles.heroContentWrapper}>
+        <ul class={styles.badges}>
+          <li class:list={[styles.badge, styles.badgeAvailable]}>
+            <span class={styles.badgeDot} aria-hidden="true"></span>
+            Open to new opportunities
+          </li>
+          <li class={styles.badge}>
+            <Icon name="pin" size={14} />
+            Rio de Janeiro, Brazil · Remote
+          </li>
+        </ul>
+
         <h1>
-          <span>Hello World,</span>
-          welcome to my blog!
+          <span class={styles.firstName}>Marco</span>
+          <span class={styles.lastName}>Araujo</span>
         </h1>
 
-        <p>
-          Here I share some experiences and insights as a computer engineer and
-          software developer. My goal is to write articles and tips on a range
-          of topics related to technology, from Javascript and Node.js to
-          Arduino, robotics, and AI.
+        <p class={styles.tagline}>
+          Full Stack Engineer · TypeScript · React · Vue · Node.js
         </p>
 
         <p>
-          Feel free to get in touch if you have any feedback or new insights!
+          Full Stack Engineer with 6+ years of experience building scalable,
+          high-performance web applications with TypeScript, React and Node.js,
+          across SaaS, enterprise, and high-traffic e-commerce.
         </p>
 
-        <p>
-          Follow me on:
-          <a
-            href={SOCIAL_LINKS.github}
-            title="Github"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="github" color="#35495e" size={18} />
+        <div class={styles.actions}>
+          <a href="/blog/" class={styles.primaryButton}>
+            Read the blog
           </a>
           <a
-            href={SOCIAL_LINKS.linkedin}
-            title="LinkedIn"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={cvUrl}
+            class:list={[styles.secondaryButton, styles.accentBorder]}
+            download="Marco_Araujo_-_Fullstack_Software_Engineer-CV.pdf"
           >
-            <Icon name="linkedin" color="#35495e" size={18} />
+            Download CV
           </a>
-        </p>
+          <a
+            href={coverLetterUrl}
+            class={styles.secondaryButton}
+            download="Marco_Araujo_-_Fullstack_Software_Engineer-Cover-Letter.pdf"
+          >
+            Download Cover Letter
+          </a>
+        </div>
       </div>
 
       <div class={styles.heroImageWrapper}>
         <Image
           src={heroImage}
           sizes="(min-width: 992px) 475px, 95vw"
-          alt="Home page hero image."
+          alt="Cloud of technology logos: React, TypeScript, Vue, Node.js, Remix, Shopify, GraphQL and more."
           priority
         />
       </div>
     </div>
+
+    <TechStack />
   </div>
 
   <div class={styles.latestPosts}>
-    <h2>Latest posts</h2>
+    <div class={styles.sectionHeader}>
+      <h2>
+        <span>From the</span>
+        <span>blog</span>
+      </h2>
 
-    <PostsGrid posts={latestPosts} />
-
-    <div class={styles.morePosts}>
-      <p>
-        <a href="/posts/">More posts</a>
-      </p>
+      <a href="/blog/" class={styles.viewAll}>
+        Visit the blog →
+      </a>
     </div>
+
+    <PostsGrid posts={latestPosts} highlightFirst />
   </div>
 </BaseLayout>

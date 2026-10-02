@@ -30,6 +30,11 @@ const linkIcon = {
 export default defineConfig({
   site: 'https://marcoaraujoneves.github.io',
   integrations: [sitemap()],
+  // Keeps links to the old Gatsby URLs working.
+  redirects: {
+    '/posts': '/blog/',
+    '/hello-world': '/blog/hello-world/',
+  },
   image: {
     layout: 'constrained',
     responsiveStyles: true,

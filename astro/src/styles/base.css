@@ -75,7 +75,7 @@ img {
 main {
   width: 95%;
   max-width: 1110px;
-  min-height: calc(100vh - 98px - 488px);
+  min-height: calc(100vh - 72px - 340px);
   margin: 0 auto;
   padding: 24px 0 64px;
 }
