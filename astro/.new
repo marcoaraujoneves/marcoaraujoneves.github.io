@@ -145,43 +145,33 @@ const experience = [
     ],
     tags: ['React', 'React Native', 'Node.js', 'PostgreSQL'],
   },
-  {
-    period: '2019',
-    role: 'IT Intern',
-    place: 'Rio de Janeiro State University',
-    context: 'Disaster prevention · Mobile app',
-    responsibilities: [
-      'Developed a climate-monitoring mobile app with Ionic and its Java REST API',
-      'Scalable monitoring network with weather stations and sensors',
-    ],
-    impact: [
-      'Published the app on the Google Play Store',
-      'Earned a project registration certificate',
-    ],
-    tags: ['Ionic', 'Angular', 'Java', 'Java EE', 'Java Beans', 'REST API'],
-  },
 ]
 
 const education = [
   {
-    period: '2016 – 2021',
+    period: 'From 2016',
     title: 'B.Sc. in Computer Engineering',
     place: 'Rio de Janeiro State University (UERJ)',
-    text: 'The basic engineering cycle gave me a really strong STEM foundation, with calculus, physics, differential equations, numerical simulation and linear algebra. The computer science cycle then covered algorithms, data structures, computer architecture, databases, networks and state machines, plus machine learning concepts like regression models, perceptrons, neural networks and techniques such as SVD, QR decomposition and PCA. Constant exchange with students and Ph.D. researchers, and meetups ranging from sociophysics to black holes, made it an even richer experience.',
+    text: 'A strong STEM foundation, from calculus and physics to algorithms, databases, networks and machine learning.',
   },
   {
     period: '2014',
     title: 'Technical course in Programming',
     place: 'ETEC, São Paulo',
-    text: 'One of the leading technical schools in Brazil. I trained as a Programming Assistant and learned the basics of system analysis, SQL databases, web development with JavaScript and PHP, and desktop software with Java and C#. The coursework was demanding, with 6-month modules, patience and overnight debugging, and it sealed my decision to join IT.',
+    text: 'Systems analysis, SQL, web development with JavaScript and PHP, and desktop software with Java and C#.',
   },
 ]
 
 const academic = [
   {
-    period: '2017 – 2020',
+    period: '2019',
+    title: 'IT Intern · UERJ',
+    text: 'A climate-monitoring mobile app with Ionic and a Java REST API for disaster prevention, published on Google Play.',
+  },
+  {
+    period: '2017',
     title: 'Junior Project Manager & Engineer · Serra Jr. Engenharia',
-    text: 'I joined our university junior company, where, under the mentorship of experienced staff and Ph.D. professors, I managed backlogs, gathered client requirements and led the delivery of web applications using Angular, PHP and JavaScript. It was also where I designed an industrial IoT solution with Arduino and C++ to automate temperature control in production, the first time my love for electronics could be put to use.',
+    text: 'Managed backlogs and delivered web apps with Angular, PHP and JavaScript, plus an Arduino temperature-control IoT solution.',
   },
 ]
 ---
