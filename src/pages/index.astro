@@ -7,13 +7,13 @@ import TechStack from '../components/TechStack.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { getPosts } from '../lib/posts'
 
-import coverLetterUrl from '../assets/documents/Marco_Araujo_-_Fullstack_Software_Engineer-Cover-Letter.pdf?url'
+import coverLetterUrl from '../assets/documents/Marco_Araujo_-_Fullstack_Software_Engineer-Cover_Letter.pdf?url'
 import cvUrl from '../assets/documents/Marco_Araujo_-_Fullstack_Software_Engineer-CV.pdf?url'
 import heroImage from '../assets/images/tech-cloud.png'
 import styles from '../styles/home.module.css'
 
-// Flip to true to bring the cover letter button back.
-const showCoverLetter = false
+// Set to false to hide the cover letter button.
+const showCoverLetter = true
 
 const latestPosts = (await getPosts()).slice(0, 4)
 ---
@@ -63,7 +63,7 @@ const latestPosts = (await getPosts()).slice(0, 4)
             <a
               href={coverLetterUrl}
               class={styles.secondaryButton}
-              download="Marco_Araujo_-_Fullstack_Software_Engineer-Cover-Letter.pdf"
+              download="Marco_Araujo_-_Fullstack_Software_Engineer-Cover_Letter.pdf"
             >
               Download Cover Letter
             </a>
