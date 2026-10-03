@@ -36,7 +36,9 @@ const { post, previous, next } = Astro.props
 const { title, description, category, tags, date, cover } = post.data
 const coverImage = getLocalImage(cover)
 const { Content, headings } = await render(post)
-const outline = headings.filter(heading => heading.depth === 2)
+const outline = headings.filter(
+  heading => heading.depth === 2 || heading.depth === 3,
+)
 ---
 
 <BaseLayout
@@ -98,7 +100,7 @@ const outline = headings.filter(heading => heading.depth === 2)
           <p>On this page</p>
           <ul data-outline>
             {outline.map(heading => (
-              <li>
+              <li data-depth={heading.depth}>
                 <a href={`#${heading.slug}`}>{heading.text}</a>
               </li>
             ))}
