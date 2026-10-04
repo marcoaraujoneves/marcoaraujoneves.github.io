@@ -51,7 +51,7 @@ I worked in something like a Forward Deployed role, reporting to the merchant st
 
 ## What you'll find here
 
-Today, my main tools are TypeScript, React, Node.js, Remix / React Router, Shopify Hydrogen, Vue, Firebase, and PostgreSQL. Lately, I've also been diving into AI tooling, working with Claude Code, the Claude API, MCP, and agent skills.
+Today, my main tools are **TypeScript**, **React**, **Node.js**, **Remix** / **React Router**, **Shopify Hydrogen**, **Vue**, **Firebase**, and **PostgreSQL**. Lately, I've also been diving into **AI tooling**, working with **Claude Code**, the **Claude API**, **MCP**, and **agent skills**.
 
 On this blog, I plan to write about the things I work with and care about: JavaScript and TypeScript, web performance, SaaS and e-commerce, AI, etc. Mostly practical lessons learned along the way.
 

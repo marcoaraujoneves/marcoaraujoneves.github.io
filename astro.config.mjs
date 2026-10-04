@@ -4,6 +4,8 @@ import { rehypeHeadingIds, unified } from '@astrojs/markdown-remark'
 import sitemap from '@astrojs/sitemap'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
+import blogEditor from './integrations/blog-editor/index.ts'
+
 // Remix Icon "link" glyph, shown next to headings on hover.
 const linkIcon = {
   type: 'element',
@@ -29,7 +31,8 @@ const linkIcon = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://marcoaraujoneves.github.io',
-  integrations: [sitemap()],
+  // blogEditor only does anything under `npm run blog-editor`.
+  integrations: [sitemap(), blogEditor()],
   // Keeps links to the old Gatsby URLs working.
   redirects: {
     '/posts': '/blog/',

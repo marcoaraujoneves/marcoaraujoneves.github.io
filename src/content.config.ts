@@ -12,6 +12,8 @@ const posts = defineCollection({
     category: z.string(),
     tags: z.array(z.string()).default([]),
     date: z.coerce.date(),
+    // Drafts show up in dev but are left out of the production build.
+    draft: z.boolean().default(false),
   }),
 })
 

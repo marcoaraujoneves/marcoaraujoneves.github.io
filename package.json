@@ -9,6 +9,8 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "blog-editor": "EDIT=1 astro dev",
+    "test": "vitest run",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
@@ -26,7 +28,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@codemirror/commands": "^6.11.1",
+    "@codemirror/lang-markdown": "^6.5.2",
+    "@codemirror/lang-yaml": "^6.1.3",
+    "@codemirror/language-data": "^6.5.2",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/theme-one-dark": "^6.1.3",
+    "@codemirror/view": "^6.43.13",
     "@eslint/js": "^10.0.1",
+    "codemirror": "^6.0.2",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
@@ -34,7 +44,8 @@
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
     "typescript": "~6.0",
-    "typescript-eslint": "^8.71.0"
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3"
   },
   "allowScripts": {
     "esbuild": true

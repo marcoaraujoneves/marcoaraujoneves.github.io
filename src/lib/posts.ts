@@ -18,9 +18,12 @@ export function getLocalImage(fileName: string): ImageMetadata {
   return image.default
 }
 
-/** All posts, newest first. */
+/** All posts, newest first. Drafts are only included in dev. */
 export async function getPosts(): Promise<Post[]> {
-  const posts = await getCollection('posts')
+  const posts = await getCollection(
+    'posts',
+    post => import.meta.env.DEV || !post.data.draft
+  )
 
   return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 }
