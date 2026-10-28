@@ -11,6 +11,7 @@ import logoLight from '../assets/images/logo-light.png'
 import styles from '../styles/about.module.css'
 
 const highlights = [
+  'Toptal top 3% talent network member since October 2026',
   '6+ years building web apps, from startup SaaS to US e-commerce',
   'Fully remote and async, working with teams across time zones',
   'TypeScript, React and Node.js at the core, with experience in Vue React Native',
@@ -84,7 +85,15 @@ const stack = [
 
 const experience = [
   {
-    period: '2025 – now',
+    period: '2026 – now',
+    role: 'Fullstack Engineer',
+    place: 'Toptal',
+    context: 'Global talent network · Top 3%',
+    description:
+      'Selected into Toptal’s global talent network after passing a multi-stage screening process evaluating software engineering fundamentals, live coding, system architecture, and technical communication.',
+  },
+  {
+    period: '2025 – 2026',
     role: 'Fullstack Engineer',
     place: 'Form Factory',
     context: 'Headless e-commerce · US brands',
@@ -221,6 +230,7 @@ const academic = [
         Rio de Janeiro, Brazil · BRT · UTC−3
       </p>
       <p class={styles.note}>Overlaps with US Eastern &amp; Central hours</p>
+      <p class={styles.note}>Toptal top 3% talent since October 2026</p>
 
       <div class={styles.links}>
         <a href={SOCIAL_LINKS.github} aria-label="GitHub">
@@ -250,6 +260,16 @@ const academic = [
         TypeScript, React and Node.js. I've worked across small SaaS startups,
         enterprise projects and high-traffic e-commerce, and I enjoy engaging in
         the whole product lifecycle, from the first prototype to launch.
+      </p>
+
+      <p>
+        Since October 2026, I'm also part of{' '}
+        <a
+          href="https://www.toptal.com/developers/resume/marco-araujo#bGn0ye"
+          target="_blank"
+          rel="noopener">Toptal</a
+        >, a network of the top 3% of freelance talent, where I was vetted
+        through their screening process.
       </p>
 
       <p>
@@ -306,6 +326,7 @@ const academic = [
             role,
             place,
             context,
+            description,
             responsibilities,
             impact,
             tags,
@@ -317,25 +338,37 @@ const academic = [
               </h3>
               <p class={styles.context}>{context}</p>
 
-              <h4>What I do</h4>
-              <ul class={styles.bullets}>
-                {responsibilities.map(item => (
-                  <li>{item}</li>
-                ))}
-              </ul>
+              {description && <p>{description}</p>}
 
-              <h4>Impact</h4>
-              <ul class={styles.bullets}>
-                {impact.map(item => (
-                  <li>{item}</li>
-                ))}
-              </ul>
+              {responsibilities && (
+                <>
+                  <h4>What I do</h4>
+                  <ul class={styles.bullets}>
+                    {responsibilities.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
-              <ul class={styles.tags}>
-                {tags.map(tag => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
+              {impact && (
+                <>
+                  <h4>Impact</h4>
+                  <ul class={styles.bullets}>
+                    {impact.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {tags && (
+                <ul class={styles.tags}>
+                  {tags.map(tag => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              )}
             </li>
           )
         )}
