@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#181a1b"/>
+      <stop offset="1" stop-color="#3350a0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1450" cy="860" r="280" fill="#fff" opacity=".05"/>
+  <rect x="170" y="120" width="1260" height="760" rx="24" fill="#181a1b" stroke="#363b3d" stroke-width="3"/>
+  <rect x="170" y="120" width="1260" height="70" rx="24" fill="#1b1e1f"/>
+  <rect x="170" y="166" width="1260" height="24" fill="#1b1e1f"/>
+  <circle cx="216" cy="155" r="9" fill="#ff5f57"/>
+  <circle cx="246" cy="155" r="9" fill="#febc2e"/>
+  <circle cx="276" cy="155" r="9" fill="#28c840"/>
+  <!-- navbar -->
+  <circle cx="240" cy="236" r="20" fill="#4282b8"/>
+  <text x="274" y="246" font-size="26" font-weight="700" fill="#e8e6e3">marco<tspan fill="#4282b8">araujo</tspan></text>
+  <g font-size="22" fill="#a6bbcd">
+    <text x="860" y="244">Home</text><text x="950" y="244">About</text>
+    <text x="1050" y="244" fill="#4282b8">Projects</text><text x="1170" y="244">Blog</text>
+  </g>
+  <rect x="1260" y="212" width="130" height="46" rx="23" fill="#4282b8"/>
+  <!-- hero -->
+  <text x="240" y="400" font-size="120" font-weight="700" fill="#e8e6e3" letter-spacing="2">BUILDING</text>
+  <text x="240" y="520" font-size="120" font-weight="700" fill="#4282b8" letter-spacing="2">FOR THE WEB</text>
+  <rect x="240" y="570" width="520" height="16" rx="8" fill="#363b3d"/>
+  <rect x="240" y="604" width="400" height="16" rx="8" fill="#363b3d"/>
+  <!-- code block -->
+  <rect x="860" y="330" width="500" height="260" rx="14" fill="#1b1e1f" stroke="#363b3d" stroke-width="2"/>
+  <g font-family="monospace" font-size="24">
+    <text x="890" y="378" fill="#6a737d">1</text><text x="930" y="378" fill="#ff7b72">const</text><text x="1010" y="378" fill="#e8e6e3">site</text><text x="1060" y="378" fill="#ff7b72">=</text><text x="1090" y="378" fill="#a5d6ff">'fast'</text>
+    <text x="890" y="426" fill="#6a737d">2</text><text x="930" y="426" fill="#d2a8ff">build</text><text x="990" y="426" fill="#e8e6e3">(site)</text>
+    <text x="890" y="474" fill="#6a737d">3</text><text x="930" y="474" fill="#6a737d">// static, 100/100</text>
+  </g>
+  <!-- cards -->
+  <rect x="240" y="680" width="300" height="140" rx="14" fill="#1b1e1f" stroke="#363b3d" stroke-width="2"/>
+  <rect x="580" y="680" width="300" height="140" rx="14" fill="#1b1e1f" stroke="#363b3d" stroke-width="2"/>
+  <rect x="920" y="680" width="300" height="140" rx="14" fill="#1b1e1f" stroke="#363b3d" stroke-width="2"/>
+  <rect x="262" y="702" width="120" height="14" rx="7" fill="#4282b8"/>
+  <rect x="602" y="702" width="120" height="14" rx="7" fill="#4282b8"/>
+  <rect x="942" y="702" width="120" height="14" rx="7" fill="#4282b8"/>
+  <rect x="262" y="736" width="250" height="14" rx="7" fill="#363b3d"/>
+  <rect x="602" y="736" width="250" height="14" rx="7" fill="#363b3d"/>
+  <rect x="942" y="736" width="250" height="14" rx="7" fill="#363b3d"/>
+</svg>

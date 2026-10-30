@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets'
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { projects } from '../data/projects'
+
+import styles from '../styles/projects.module.css'
+---
+
+<BaseLayout
+  title="Projects"
+  description="A selection of products and apps I've built, from e-commerce and SaaS to mobile and IoT."
+>
+  <h1 class={styles.pageTitle}>
+    <span>Selected</span>
+    <span>projects</span>
+  </h1>
+
+  <p class={styles.intro}>
+    A selection of products and apps I've worked on, from headless e-commerce
+    and SaaS to mobile and IoT.
+  </p>
+
+  <ol class={styles.list}>
+    {projects.map((project, index) => (
+      <li class={styles.item}>
+        <div class={styles.media}>
+          <Image
+            src={project.image}
+            width={1600}
+            height={1000}
+            sizes="(min-width: 900px) 560px, 95vw"
+            alt={`${project.title} preview`}
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+          <span class={styles.index} aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        </div>
+
+        <div class={styles.body}>
+          <p class={styles.meta}>
+            <span>{project.year}</span>
+            <span>{project.role}</span>
+          </p>
+
+          <h2>{project.title}</h2>
+          <p class={styles.description}>{project.description}</p>
+
+          <ul class={styles.highlights}>
+            {project.highlights.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
+
+          <ul class={styles.tags} aria-label="Technologies">
+            {project.tags.map(tag => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+
+          {project.href && (
+            <a
+              href={project.href}
+              class={styles.link}
+              target="_blank"
+              rel="noopener"
+            >
+              {project.linkLabel ?? 'Visit'} ↗
+            </a>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+</BaseLayout>

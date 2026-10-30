@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f2a44"/>
+      <stop offset="1" stop-color="#4282b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1420" cy="140" r="260" fill="#fff" opacity=".06"/>
+  <rect x="190" y="130" width="1220" height="760" rx="24" fill="#fff"/>
+  <rect x="190" y="130" width="1220" height="70" rx="24" fill="#eef2f7"/>
+  <rect x="190" y="176" width="1220" height="24" fill="#eef2f7"/>
+  <circle cx="236" cy="165" r="9" fill="#ff5f57"/>
+  <circle cx="266" cy="165" r="9" fill="#febc2e"/>
+  <circle cx="296" cy="165" r="9" fill="#28c840"/>
+  <!-- sidebar -->
+  <rect x="190" y="200" width="280" height="690" fill="#f6f8fb"/>
+  <rect x="226" y="240" width="140" height="22" rx="6" fill="#1f2a44"/>
+  <rect x="226" y="304" width="200" height="40" rx="10" fill="#4282b8"/>
+  <rect x="226" y="364" width="170" height="16" rx="8" fill="#c5cfdb"/>
+  <rect x="226" y="400" width="190" height="16" rx="8" fill="#c5cfdb"/>
+  <rect x="226" y="436" width="150" height="16" rx="8" fill="#c5cfdb"/>
+  <rect x="226" y="472" width="180" height="16" rx="8" fill="#c5cfdb"/>
+  <!-- main -->
+  <text x="520" y="272" font-size="40" font-weight="700" fill="#1f2a44">Welcome back</text>
+  <rect x="520" y="300" width="420" height="16" rx="8" fill="#c5cfdb"/>
+  <rect x="520" y="352" width="260" height="150" rx="16" fill="#eaf2fa"/>
+  <rect x="800" y="352" width="260" height="150" rx="16" fill="#eaf2fa"/>
+  <rect x="1080" y="352" width="290" height="150" rx="16" fill="#1f2a44"/>
+  <text x="548" y="410" font-size="22" fill="#6b7a8d">Loyalty points</text>
+  <text x="548" y="466" font-size="52" font-weight="700" fill="#1f2a44">2,480</text>
+  <text x="828" y="410" font-size="22" fill="#6b7a8d">Open orders</text>
+  <text x="828" y="466" font-size="52" font-weight="700" fill="#1f2a44">3</text>
+  <text x="1108" y="410" font-size="22" fill="#9db4cc">Tier</text>
+  <text x="1108" y="466" font-size="52" font-weight="700" fill="#fff">Gold</text>
+  <!-- orders -->
+  <rect x="520" y="540" width="850" height="100" rx="16" fill="#f6f8fb"/>
+  <rect x="544" y="564" width="52" height="52" rx="10" fill="#c5cfdb"/>
+  <rect x="620" y="570" width="260" height="16" rx="8" fill="#1f2a44" opacity=".8"/>
+  <rect x="620" y="598" width="180" height="14" rx="7" fill="#c5cfdb"/>
+  <rect x="1250" y="578" width="96" height="32" rx="16" fill="#28c840" opacity=".25"/>
+  <rect x="520" y="660" width="850" height="100" rx="16" fill="#f6f8fb"/>
+  <rect x="544" y="684" width="52" height="52" rx="10" fill="#c5cfdb"/>
+  <rect x="620" y="690" width="300" height="16" rx="8" fill="#1f2a44" opacity=".8"/>
+  <rect x="620" y="718" width="200" height="14" rx="7" fill="#c5cfdb"/>
+  <rect x="1250" y="698" width="96" height="32" rx="16" fill="#febc2e" opacity=".35"/>
+  <!-- lighthouse badge -->
+  <circle cx="1330" cy="800" r="64" fill="#fff" stroke="#28c840" stroke-width="10"/>
+  <text x="1330" y="818" font-size="48" font-weight="700" fill="#1a8a2e" text-anchor="middle">98</text>
+</svg>

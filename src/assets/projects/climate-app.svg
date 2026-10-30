@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b3c6e"/>
+      <stop offset="1" stop-color="#38b6ff"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2d8fe0"/>
+      <stop offset="1" stop-color="#0b3c6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1300" cy="200" r="280" fill="#fff" opacity=".07"/>
+  <!-- phone -->
+  <rect x="560" y="70" width="480" height="860" rx="64" fill="#07213d"/>
+  <rect x="584" y="96" width="432" height="808" rx="44" fill="url(#screen)"/>
+  <rect x="740" y="112" width="120" height="26" rx="13" fill="#07213d"/>
+  <text x="800" y="220" font-size="30" fill="#cfe8ff" text-anchor="middle">Rio de Janeiro</text>
+  <text x="800" y="360" font-size="140" font-weight="700" fill="#fff" text-anchor="middle">27°</text>
+  <circle cx="800" cy="440" r="36" fill="#ffd37a"/>
+  <ellipse cx="830" cy="456" rx="52" ry="26" fill="#fff"/>
+  <ellipse cx="786" cy="462" rx="40" ry="22" fill="#fff"/>
+  <rect x="624" y="540" width="170" height="130" rx="22" fill="#fff" opacity=".18"/>
+  <rect x="806" y="540" width="170" height="130" rx="22" fill="#fff" opacity=".18"/>
+  <text x="650" y="590" font-size="22" fill="#cfe8ff">Humidity</text>
+  <text x="650" y="640" font-size="44" font-weight="700" fill="#fff">72%</text>
+  <text x="832" y="590" font-size="22" fill="#cfe8ff">Rain</text>
+  <text x="832" y="640" font-size="44" font-weight="700" fill="#fff">4 mm</text>
+  <rect x="624" y="700" width="352" height="150" rx="22" fill="#fff" opacity=".18"/>
+  <polyline points="648,820 700,780 752,800 804,750 856,770 908,730 952,745" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- sensor nodes -->
+  <g fill="#fff" opacity=".9">
+    <circle cx="260" cy="300" r="14"/><circle cx="360" cy="480" r="14"/><circle cx="220" cy="640" r="14"/>
+    <circle cx="1340" cy="360" r="14"/><circle cx="1260" cy="560" r="14"/><circle cx="1380" cy="700" r="14"/>
+  </g>
+  <g stroke="#fff" stroke-width="3" stroke-dasharray="10 10" opacity=".5" fill="none">
+    <path d="M260 300 L560 420"/><path d="M360 480 L560 520"/><path d="M220 640 L560 640"/>
+    <path d="M1340 360 L1040 420"/><path d="M1260 560 L1040 540"/><path d="M1380 700 L1040 660"/>
+  </g>
+</svg>
